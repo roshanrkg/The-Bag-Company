@@ -1,0 +1,157 @@
+<%- include('./partials/header') %>
+
+
+
+<nav class="w-full fixed top-0 left-0 px-5 py-3 bg-gray-100 ">
+    <img class="h-10" src="https://i.ibb.co/mrF0YKRm/image.png" alt="The Bag Company">
+    <% if(success.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= success %>
+            </span>
+        </div>
+        
+        <% } %>
+        </nav>
+
+        
+            <div class="min-h-screen flex flex-col">
+                <div class="container px-10 py-20 flex flex-grow">
+                    <div class="w-[25%] flex h-screen flex-col items-start">
+                        <div class="flex flex-col">
+                            <p class="text-black font-semibold text-4xl">Admin Panel</p>
+                        </div>
+                    </div>
+                    <main class="w-3/4 bg-white p-8 shadow ml-4">
+                        <h2 class="text-xl font-bold mb-4">Create New Product</h2>
+                        <form autocomplete="off" action="/products/create" method="post" enctype="multipart/form-data">
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-2">Product Details</h3>
+                                
+                                <!-- Product Image Input -->
+                                <div class="mb-4">
+                                    <label class="block mb-2 font-medium">Product Image</label>
+                                    <input required name="image" type="file" class="py-2 rounded" id="imageInput" accept="image/*">
+                                </div>
+                        
+                                <!-- Image Preview -->
+                                <div id="imagePreviewContainer" class="mb-4 hidden">
+                                    <p class="font-medium">Image Preview:</p>
+                                    <img id="imagePreview" src="" class="border rounded w-32 h-32 object-cover">
+                                </div>
+                        
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input required name="name" type="text" placeholder="Product Name"
+                                        class="border p-2 rounded w-full">
+                                    <input required name="price" type="text" placeholder="Product Price"
+                                        class="border p-2 rounded w-full">
+                                    <input required name="discount" type="text" placeholder="Discount Price"
+                                        class="border p-2 rounded w-full">
+                                    <input required name="about" type="text" placeholder="About Product"
+                                        class="border p-2 rounded w-full">
+                                    <input required name="keyword" type="text" placeholder="Keyword"
+                                        class="border p-2 rounded w-full">
+                                </div>
+                            </div>
+                        
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input name="panelcolor" type="text" placeholder="Panel Color"
+                                        class="border p-2 rounded w-full">
+                                </div>
+                            </div>
+                            
+                            <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit" value="Create New Product">
+                        </form>
+                    </main>
+                </div>
+                <hr  class="h-px  my-8 bg-gray-200 border-2 dark:bg-gray-700">
+
+                <div id="mainbar" class="cursor-pointer mt-2 p-4 md:mt-2">
+                    <h2 class="text-4xl text-zinc-900 font-semibold">All listed products</h2>
+                
+                    <!-- Move grid container outside the loop -->
+                    <div id="Product" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <% products.forEach(function(product){ %>
+                            <div id="0" class="transition-transform duration-500 hover:scale-110 shadow-lg mt-[2.1rem] bg-[<%= product.panelcolor %>] relative">
+                                <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" class="fade-img w-full h-[13rem] object-cover ">
+                                <form action="/delete/<%= product._id %>?_method=DELETE" method="POST">
+                                    <button type="submit" 
+                                        class="bg-[#d02734] border border-red-400 px-3 py-1 text-white font-semibold rounded absolute top-0 right-0 m-2"
+                                        onclick="return confirm('Are you sure you want to delete this item?');">
+                                        Delete Item
+                                    </button>
+                                </form>           
+                                                   
+                                  <h3 class="text-lg font-bold ml-[1rem] mt-4"><%= product.name %></h3>
+                                <p class="text-sm font-bold ml-[1rem]">₹ <%= product.price %></p>
+                                <p class="text-sm font-bold ml-[1rem]" ><%= product.about %></p>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="bg-[#1a1a1a] text-black py-10 mt-10">
+                <div class="container mx-auto px-6">
+                    <!-- Logo Centered -->
+                    <div class="flex justify-center">
+                        <img src="https://i.ibb.co/mrF0YKRm/image.png" alt="The Bag Company" class="w-40">
+                    </div>
+            
+                    <!-- Footer Content -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-white mt-6">
+                        <!-- Quick Links -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Quick Links</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="hover:underline">Home</a></li>
+                                <li><a href="#" class="hover:underline">Products</a></li>
+                                <li><a href="#" class="hover:underline">About</a></li>
+                                <li><a href="#" class="hover:underline">Reviews</a></li>
+                            </ul>
+                        </div>
+            
+                        <!-- Contact Info -->
+                        <div>
+                            <h3 class="font-bold text-white text-lg mb-2">Contact Us</h3>
+                            <p>Email: support@bagcompany.com</p>
+                            <p>Phone: +91 98765 43210</p>
+                            <p>Address: Mumbai, India</p>
+                        </div>
+            
+                        <!-- Social Media -->
+                        <div>
+                            <h3 class="font-bold text-white text-lg mb-2">Follow Us</h3>
+                            <div class="flex justify-center space-x-4">
+                                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="w-6"></a>
+                                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="w-6"></a>
+                                <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpevfm2P0BtgC9LbXH1n2Xp-oR-iLX8xQTBg&s" class="w-6"></a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Copyright -->
+                    <div class="text-center text-white text-sm mt-8 border-t pt-4">
+                        © 2025 The Bag Company. All Rights Reserved.
+                    </div>
+                </div>
+            </footer>
+            
+            <!-- JavaScript for Image Preview -->
+            <script>
+                document.getElementById("imageInput").addEventListener("change", function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            document.getElementById("imagePreview").src = e.target.result;
+                            document.getElementById("imagePreviewContainer").classList.remove("hidden");
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            </script>
+            
+            <%- include('./partials/footer') %>

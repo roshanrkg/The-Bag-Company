@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper.js CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+</head>
+<body class="bg-[#c6b39d] ">
+
+
+
+
+
+    <!-- Nav Bar -->
+    <form action="#">
+        <div id="navbar" class=" flex fixed items-center justify-between px-4 py-1 md:px-8  lg:px-7  bg-gray-100 top-0 left-0 w-full z-50 shadow-lg">
+            <img class="h-10" src="https://i.ibb.co/mrF0YKRm/image.png" alt="The Bag Company">
+            <!-- <p class="text-4xl text-blue-500 font-bold "><u>The</u> <u>Bag</u> <u> Company.</u></p> -->
+            <div class="flex p-2  w-[35rem]">
+                
+                <form action="/search" method="get">
+                <input name="keyword" type="text" class="p-2 text-xl w-full focus:outline-none " placeholder="Search " id="search-bar">
+                <button type="submit" class=" bg-yellow-500 px-4 py-2 rounded-r-lg">
+                    <img src="https://cdn-icons-png.flaticon.com/128/622/622669.png" class="w-4" alt="Search">
+                </button>
+              </form>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="menu-button" class="block md:hidden text-xl font-bold">&#9776;</button>
+            
+            <!-- Navigation Links -->
+            <div id="menu" class="hidden md:flex md:items-center md:space-x-7">
+                <a class="font-bold" href="/shop">Home</a>
+                <div id="add-cart" class="relative">
+                    <a href="/cart">
+                    <img id="cart-icon" class="w-10 cursor-pointer " src="https://cdn-icons-png.flaticon.com/128/891/891407.png" alt="Cart">
+                </a>
+                </div>
+              
+                <a class="font-bold" href="/users/logout">Logout</a>
+            </div>
+        </div>  
+    </form>
+
+    <!-- Left Bar -->
+
+
+    <!-- Main Bar -->
+
+
+
+     
+
+    
+
+
+    <div id="mainbar" class="cursor-pointer mt-2 p-4 md:mt-2 ">
+        <h2 class="text-4xl text-zinc-900 font-semibold mb-10">Featured:</h2>
+    
+        <!-- Move grid container outside the loop -->
+        <div id="Product" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <% material.forEach(function(material){ %>
+                <div id="0" class="transition-transform duration-500 hover:scale-110 shadow-lg mt-[1 rem] bg-[<%= material.panelcolor %>] relative p-4">
+                    <img src="data:image/jpeg;base64,<%= material.image.toString('base64') %>" class="fade-img w-full h-[13rem] object-cover ">
+                    
+                    <!-- Corrected Add to Cart Button -->
+                    <a href="/addtocart/<%= material._id %>" 
+                       class="bg-[#d02734] border border-red-400 px-3 py-1 text-white font-semibold rounded absolute top-0 right-0 m-2">
+                        Add to Cart
+                    </a>
+                    
+                    <h3 class="text-lg font-bold ml-[1rem] mt-4"><%= material.name %></h3>
+                    <div class="flex">
+                    <p class="text-sm font-bold ml-[1rem]">Mrp: ₹ <%= material.price %></p>
+                    <p class="text-sm font-bold ml-[1rem]">₹Discount <%= material.discount %></p>
+                  </div>
+                    <p class="text-sm font-bold ml-[1rem]"><%= material.about %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+
+
+
+    <div  class="flex mt-10 p-4 ">
+        <div class="w-1/2  shadow-lg transition-transform duration-500 hover:scale-110 bg-gray-100 relative">
+            <img class="h-full" src="https://i.ibb.co/Wp3fJNKZ/image.png" alt="">
+        </div>
+        <div class="w-1/2 flex flex-col items-center ">
+            <img class="h-20 " src="https://i.ibb.co/mrF0YKRm/image.png" alt="">
+            <p class="p-10 mt-4 font-semibold">"At <b>The Bag Company</b> , we specialize in crafting high-quality, premium bags designed for style and durability. Our mission is to blend elegance with functionality, ensuring every piece is perfect for modern lifestyles. With a focus on quality and innovation, we create bags that stand out and last."</p>
+            <div class="flex space-x-4 mt-10">
+                <!-- Free Delivery -->
+                <div class="flex items-center px-4 py-2 border rounded-lg shadow-md bg-white hover:shadow-lg transition">
+
+                    <img class="h-10" src="https://www.svgrepo.com/show/250234/delivery-truck-free.svg" alt="">
+                    <span class="ml-2 text-gray-700 font-medium">Free delivery</span>
+                </div>
+            
+                <!-- Easy Payments -->
+                <div class="flex items-center px-4 py-2 border rounded-lg shadow-md bg-white hover:shadow-lg transition">
+                    <img class="h-10" src="https://www.svgrepo.com/show/449173/payment-paypal.svg" alt="">
+                    <span class="ml-2 text-gray-700 font-medium">easy payments</span>
+                </div>
+            
+                <!-- 24/7 Service -->
+                <div class="flex items-center px-4 py-2 border rounded-lg shadow-md bg-white hover:shadow-lg transition">
+
+                    <img class="h-10" src="https://www.svgrepo.com/show/485554/customer-support.svg" alt="">
+                    <span id="review" class="ml-2 text-gray-700 font-medium">24/7 service</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+      
+
+
+
+      <footer class="bg-[#1a1a1a] text-black py-10 mt-10">
+        <div class="container mx-auto px-6">
+            <!-- Logo Centered -->
+            <div class="flex justify-center">
+                <img src="https://i.ibb.co/mrF0YKRm/image.png" alt="The Bag Company" class="w-40">
+            </div>
+    
+            <!-- Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-white mt-6">
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-bold text-lg mb-2">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline">Home</a></li>
+                        <li><a href="#" class="hover:underline">Products</a></li>
+                        <li><a href="#" class="hover:underline">About</a></li>
+                        <li><a href="#" class="hover:underline">Reviews</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="font-bold text-white text-lg mb-2">Contact Us</h3>
+                    <p>Email: support@bagcompany.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: Mumbai, India</p>
+                </div>
+    
+                <!-- Social Media -->
+                <div>
+                    <h3 class="font-bold text-white text-lg mb-2">Follow Us</h3>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="w-6"></a>
+                        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="w-6"></a>
+                        <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpevfm2P0BtgC9LbXH1n2Xp-oR-iLX8xQTBg&s" class="w-6"></a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="text-center text-white text-sm mt-8 border-t pt-4">
+                © 2025 The Bag Company. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+    
+
+
+
+
+
+
+    <script> 
+        document.querySelector('a[href="#mainbar"]').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('mainbar').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+
+    document.querySelector('a[href="#about"]').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('about').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+
+    document.querySelector('a[href="#review"]').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('review').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+
+
+            window.onload = function () {
+            let preloader = document.getElementById("preloader");
+            preloader.style.opacity = "0";  // Fade out effect
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 500); // Delay before removing it completely
+        };
+
+        function toggleMenu() {
+            const menu = document.getElementById("menuItems");
+            const arrow = document.getElementById("arrow");
+            menu.classList.toggle("hidden");
+            arrow.classList.toggle("rotate-180");
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".fade-img").forEach(img => {
+      img.classList.add("opacity-100");
+    });
+  });
+
+  
+
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 2,  // Show 2 reviews at a time
+    spaceBetween: 20,  // Space between reviews
+    loop: true,  // Infinite loop
+    autoplay: {
+      delay: 1000, // Auto-slide every 3 seconds
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      640: { slidesPerView: 1 }, // On smaller screens, show 1 review
+      1024: { slidesPerView: 3 } // On larger screens, show 3 reviews
+    }
+  });
+
+
+
+  const carousel = document.getElementById("carousel");
+        let index = 0;
+
+        function changeImage() {
+            index++;
+            if (index >= carousel.children.length) {
+                index = 0;
+            }
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        setInterval(changeImage, 3000); // Change every 3 seconds
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <nav class="w-full  fixed top-0 left-0 px-5 py-3">
+        <% if(error.length>0){ %>
+            <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
+                <span class="inline-block font-bold mt-1 mb-1 text-white">
+                    <%=error%> !
+                </span>
+            </div>
+      <%  } %>
+        <% if(success.length>0){ %>
+            <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-green-500">
+                <span class="inline-block font-bold mt-1 mb-1 text-white">
+                    <%=success%> !
+                </span>
+            </div>
+      <%  } %>
+      
+    </nav>
+
+    <div class="flex justify-center items-center">
+        <div class="">
+        <p class="absolute top-10 left-[9.2vh] text-black font-bold text-2xl">The Bag Company</p>
+        </div> 
+    <div class="bg-gray-200 min-h-screen  max-w-[26.25rem] "> 
+        <div class=" p-4 ml-10">
+            <h2 class="mt-[10rem] font-semibold text-3xl ">Welcome to <br><span class="text-blue-500 font-bold text-4xl">The Bag Company</span></h2>
+            <h2 class="font-bold text-xl mb-4">Create your account</h2>
+            <form  action="/users/register" method="post">
+            <input required name="fullname" type="text" placeholder="Full Name " 
+            class="lg:w-5/6 p-2 mb-4 border border-gray-300 bg-white">
+            <input required name="email" type="text" placeholder="Email" 
+            class="lg:w-5/6 p-2 mb-4 border border-gray-300 bg-white">
+            <input required name="password" type="password" placeholder="Password" 
+            class="lg:w-5/6 p-2 mb-4 border border-gray-300  bg-white">
+            <button type="submit" class="w-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-800 transition-transform transform hover:scale-105">
+                Create My Account
+            </button>
+        </form>
+            </div>
+        </div>
+            <div class=" mt- ml-[9rem]">
+                <span class="bg-blue-500 text-white rounded hover:bg-blue-800 transition p-4">Or</span>
+            </div>
+            <div class=" ml-[rem]">
+                <div class=" p-4 ml-[6rem]">
+                    <h2 class="font-semibold text-3xl mb-5">Login your account</h2>
+                    <form  action="/users/login" method="post">
+                    <input required name="email" type="text" placeholder="Email" 
+                    class="lg:w-4/5 p-2 mb-4 border   border-gray-300 bg-gray-200">
+                    
+                    <input required name="password" type="password" placeholder="Password" 
+                    class="lg:w-4/5 p-2 mb-4 border border-gray-300  bg-gray-200">
+                    <div>
+                    <button type="submit" class="w-[5rem] bg-blue-500 text-white p-2 rounded-full hover:bg-blue-800 transition-transform transform hover:scale-105">
+                        Login
+                    </button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            </div>   
+
+</body>
+</html>
